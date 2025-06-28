@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import HandshakeAnimation from "../../components/animation";
 
 export default function Home() {
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -173,6 +174,12 @@ export default function Home() {
               <p className="text-lg sm:text-xl text-black leading-relaxed mb-8 max-w-2xl mx-auto">
                 We help businesses grow their online presence through innovative strategies and data-driven results.
               </p>
+              
+              {/* Handshake Animation - Symbolizing Partnership */}
+              <div className="mb-8 flex justify-center">
+                <HandshakeAnimation width={300} height={200} duration={3000} />
+              </div>
+              
               <button 
                 className="bg-black hover:bg-white text-white hover:text-black active:bg-white active:text-black px-8 py-4 rounded-full text-base font-bold transition-colors border border-black inline-flex items-center gap-2"
               >
@@ -255,6 +262,11 @@ export default function Home() {
               <p className="text-lg text-black max-w-2xl mx-auto">
                 We are committed to delivering exceptional results and building long-term partnerships with our clients.
               </p>
+              
+              {/* Partnership Animation */}
+              <div className="mb-12 flex justify-center">
+                <HandshakeAnimation width={400} height={250} duration={4000} autoPlay={false} />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
