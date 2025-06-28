@@ -13,8 +13,10 @@ export default function Home() {
     const initAudio = async () => {
       try {
         // Create audio context
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-        audioContextRef.current = new AudioContext();
+        const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+        if (AudioContextClass) {
+          audioContextRef.current = new AudioContextClass();
+        }
 
         // Create paper rustling sound for scroll
         const createRustleSound = () => {
@@ -52,7 +54,7 @@ export default function Home() {
         // Create scroll sound only
         soundsRef.current.scroll = createRustleSound();
         
-      } catch (error) {
+      } catch {
         console.log('Audio not supported or blocked');
       }
     };
@@ -76,8 +78,8 @@ export default function Home() {
       gainNode.gain.value = 0.3;
       
       source.start();
-    } catch (error) {
-      console.log('Error playing sound:', error);
+    } catch {
+      console.log('Error playing sound');
     }
   };
 
@@ -208,7 +210,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-black mb-2">SEO Optimization</h3>
                 <p className="text-black text-sm leading-relaxed">
-                  Improve your website's visibility and organic search rankings.
+                  Improve your website&apos;s visibility and organic search rankings.
                 </p>
               </div>
 
@@ -288,7 +290,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-black mb-3">Client-Focused</h3>
                 <p className="text-black text-sm leading-relaxed">
-                  We prioritize our clients' goals and work closely with them to achieve their objectives.
+                  We prioritize our clients&apos; goals and work closely with them to achieve their objectives.
                 </p>
               </div>
             </div>
@@ -306,7 +308,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-lg text-black leading-relaxed mb-8 max-w-2xl mx-auto">
-              Contact us today for a free consultation and let's discuss how we can help you achieve your digital marketing goals.
+              Contact us today for a free consultation and let&apos;s discuss how we can help you achieve your digital marketing goals.
             </p>
             <button 
               className="bg-black hover:bg-white text-white hover:text-black active:bg-white active:text-black px-10 py-4 rounded-full text-lg font-bold transition-colors border border-black inline-flex items-center gap-2"
